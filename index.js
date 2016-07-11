@@ -21456,13 +21456,13 @@
 /* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "/react-speech-recognition-input/a2cbf16d20419b00bbdf3ab7f5f3e700.gif";
+	module.exports = __webpack_require__.p + "somonus.github.io/react-speech-recognition-input/a2cbf16d20419b00bbdf3ab7f5f3e700.gif";
 
 /***/ },
 /* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "/react-speech-recognition-input/0749786c0198fdfd99d3dba5ec815903.gif";
+	module.exports = __webpack_require__.p + "somonus.github.io/react-speech-recognition-input/0749786c0198fdfd99d3dba5ec815903.gif";
 
 /***/ }
 /******/ ]);
