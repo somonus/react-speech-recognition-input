@@ -52,5 +52,4 @@ export default class SpeechToText {
   startListening() {
     this.recognition.start();
   }
-
 }
