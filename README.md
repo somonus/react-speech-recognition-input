@@ -1,6 +1,8 @@
-# speech-recognition
+# Speech To Text
 
-Speech to text module.
+A speech recognition module.
+
+It's designed to listen continuously to a user (i.e. pauses are ok), and then converting the speech to text.
 
 ## Install
 
@@ -29,6 +31,14 @@ try {
 - onAnythingSaid: this is a callback function that is called with text as it's being said
 - onFinalised: this is a callback function that is called with the full text as it has been resolved in the cloud.
 - language: This is an optional string that specifies the language to be interpreted as. Default is United States English. 'en-US'
+
+The constructor will throw an error if speech recognition is not supported by the browser.
+````
+// Check to see if this browser supports speech recognition
+if (!('webkitSpeechRecognition' in window)) {
+  throw new Error("This browser doesn't support speech recognition. Try Google Chrome.");
+}
+````
 
 ### startListening
 
