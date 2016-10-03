@@ -1,20 +1,22 @@
-# react-speech-recognition-input
-A react speech recognition component for chrome browser 
+# speech-recognition
 
-## install
+A [React](https://facebook.github.io/react/) speech recognition component for the Chrome Browser .
 
-$ npm install react-speech-recognition-input --save
+## Install
+
+$ npm install --save react-speech-recognition
 
 ## Usage
 
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Input from 'react-speech-recognition-input';
+import SpeechRecognition from 'react-speech-recognition';
 
 ReactDOM.render((
-  <Input className="test" onChange={(value) => console.log(value)} onEnd={(value) => console.log(value)} />
-), document.getElementById('chart'));
+  <SpeechRecognition
+      className="test" onChange={(value) => console.log(value)} onEnd={(value) => console.log(value)} />
+), document.getElementById('app'));
 
 ```
 

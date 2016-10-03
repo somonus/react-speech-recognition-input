@@ -1,48 +1,34 @@
 {
-  "name": "react-speech-recognition-input",
-  "version": "0.1.0",
-  "description": "A react speech recognition component for chrome browser",
-  "main": "index.js",
+  "name": "speech-to-text",
+  "version": "0.3.3",
+  "description": "A speech to text module.",
+  "main": "./lib/index.js",
   "scripts": {
     "start": "node example/server.js",
-    "build": "rm -rf lib && cp -rf src lib && ./node_modules/.bin/babel src -d lib"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/somonus/react-speech-recognition-input.git"
+    "build": "rm -rf lib && ./node_modules/.bin/babel src -d lib",
+    "prepublish": "npm run build"
   },
   "keywords": [
-    "react",
-    "speeck",
-    "recognition"
+    "speech",
+    "recognition",
+    "text"
   ],
-  "author": "somonus",
-  "main": "lib/index.js",
+  "author": "Andrew Golightly <support@andrewgolighly.com> (http://www.golightlyplus.com)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magician11/speech-to-text.git"
+  },
   "bugs": {
-    "url": "https://github.com/somonus/react-speech-recognition-input/issues"
+    "url": "https://github.com/magician11/speech-to-text/issues"
   },
-  "homepage": "https://github.com/somonus/react-speech-recognition-input#readme",
-  "peerDependencies": {
-    "react": ">=0.14.2",
-    "react-dom": ">=0.14.2"
-  },
+  "homepage": "https://github.com/magician11/speech-to-text#readme",
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-cli": "^6.10.1",
-    "babel-core": "^6.10.4",
-    "babel-loader": "^6.2.4",
-    "babel-plugin-react-transform": "^2.0.2",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.11.1",
-    "css-loader": "0.22.0",
-    "eslint": "1.6.0",
-    "eslint-config-airbnb": "0.1.0",
-    "eslint-loader": "1.0.0",
-    "eslint-plugin-react": "3.5.0",
-    "file-loader": "^0.9.0",
-    "style-loader": "0.13.0",
-    "webpack": "1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "babel-cli": "^6.16.0",
+    "eslint": "^3.7.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0"
   }
 }
