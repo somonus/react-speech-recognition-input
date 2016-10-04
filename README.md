@@ -32,6 +32,7 @@ Demo [here](http://apps.golightlyplus.com/speech-to-text-demo/).
 
 - onAnythingSaid: this is a callback function that is called with text as it's being said
 - onFinalised: this is a callback function that is called with the full text as it has been resolved in the cloud.
+- onFinishedListening: this is a callback function that is called when the speech recognitions stops listening.
 - language: This is an optional string that specifies the language to be interpreted as. Default is United States English. 'en-US'
 
 The constructor will throw an error if speech recognition is not supported by the browser.
@@ -44,7 +45,7 @@ if (!('webkitSpeechRecognition' in window)) {
 
 ### startListening
 
-Initiates listening to speech input and will continue to call the callback functions provided until the speech is finalised. After which you'll need to call this function again.
+Initiates listening to speech input and will continue to call the callback functions provided until the speech recognition stops listening. After which you'll need to call this function again.
 
 ## License
 

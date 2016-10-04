@@ -9,9 +9,11 @@ export default class SpeechToText {
   onFinalised - a callback that will be passed the finalised transcription from the cloud
   (slow, much more accuate)
 
+  onFinishedListening - a callback that will be called when the speech recognition stops listening
+
   language - the language to interpret against. Default is US English.
   */
-  constructor(onAnythingSaid, onFinalised, language = 'en-US') {
+  constructor(onAnythingSaid, onFinalised, onFinishedListening, language = 'en-US') {
     // Check to see if this browser supports speech recognition
     if (!('webkitSpeechRecognition' in window)) {
       throw new Error("This browser doesn't support speech recognition. Try Google Chrome.");
@@ -25,10 +27,12 @@ export default class SpeechToText {
     this.recognition.interimResults = true;
     this.recognition.lang = language;
 
+    let finalTranscript = '';
+
     // process both interim and finalised results
     this.recognition.onresult = (event) => {
       let interimTranscript = '';
-      let finalTranscript = '';
+
       // concatenate all the transcribed pieces together (SpeechRecognitionResult)
       for (let i = event.resultIndex; i < event.results.length; i += 1) {
         const transcriptionPiece = event.results[i][0].transcript;
@@ -43,6 +47,8 @@ export default class SpeechToText {
         }
       }
     };
+
+    this.recognition.onend = () => onFinishedListening();
   }
 
   /*
