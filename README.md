@@ -2,7 +2,7 @@
 
 A speech recognition module.
 
-It's designed to listen continuously to a user (i.e. pauses are ok), and then converting the speech to text.
+It's designed to listen continuously to a user (i.e. pauses are ok), and then converting that speech to text.
 
 ## Install
 
@@ -23,6 +23,8 @@ try {
   console.log(error);
 }
 ````
+
+Demo [here](http://apps.golightlyplus.com/speech-to-text-demo/).
 
 ## API
 
