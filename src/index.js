@@ -39,8 +39,8 @@ export default class SpeechToText {
         // check for a finalised transciption in the cloud
         if (event.results[i].isFinal) {
           finalTranscript += transcriptionPiece;
-          onAnythingSaid(finalTranscript);
           onFinalised(finalTranscript);
+          finalTranscript = '';
         } else {
           interimTranscript += transcriptionPiece;
           onAnythingSaid(interimTranscript);
