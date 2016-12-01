@@ -18,7 +18,7 @@ export default class App extends Component {
       this.recognition = new WebkitSpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
-      this.recognition.lang = 'cmn-Hans-CN';
+      this.recognition.lang = this.props.lang || 'cmn-Hans-CN';
       this.recognition.onresult = (event) => {
         let interimTranscript = '';
         let finalTranscript = '';
