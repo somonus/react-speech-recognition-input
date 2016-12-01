@@ -30,6 +30,7 @@ open [http://localhost:8080/](http://localhost:8080/)
 
 ## props
 
+* `lang`: the speak language, default value is 'cmn-Hans-CN'. 
 * `className`: the css class name of the wrapper.
 * `onChange`: run when you start speaking, the value is what you say.
 * `onEnd`: run when you stop speaking, the value is what you say.
