@@ -1,6 +1,6 @@
 {
   "name": "react-speech-recognition-input",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A react speech recognition component for chrome browser",
   "main": "index.js",
   "scripts": {
