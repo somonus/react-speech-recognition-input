@@ -15,7 +15,10 @@ export default class SpeechToText {
   */
   constructor(onAnythingSaid, onFinalised, onFinishedListening, language = 'en-US') {
     // Check to see if this browser supports speech recognition
-    if (!('webkitSpeechRecognition' in window) || !('SpeechRecognition') in window) {
+    if (
+      !('webkitSpeechRecognition' in window) &&
+      !('SpeechRecognition' in window)
+    ) {
       throw new Error("This browser doesn't support speech recognition. Try Google Chrome or Firefox.");
     }
 
