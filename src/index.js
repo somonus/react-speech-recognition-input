@@ -15,12 +15,15 @@ export default class SpeechToText {
   */
   constructor(onAnythingSaid, onFinalised, onFinishedListening, language = 'en-US') {
     // Check to see if this browser supports speech recognition
-    if (!('webkitSpeechRecognition' in window)) {
-      throw new Error("This browser doesn't support speech recognition. Try Google Chrome.");
+    if (
+      !('webkitSpeechRecognition' in window) &&
+      !('SpeechRecognition' in window)
+    ) {
+      throw new Error("This browser doesn't support speech recognition. Try Google Chrome or Firefox.");
     }
 
-    const WebkitSpeechRecognition = window.webkitSpeechRecognition;
-    this.recognition = new WebkitSpeechRecognition();
+    const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+    this.recognition = new SpeechRecognition();
 
     //  Keep listening even if the speaker pauses, and return interim results.
     this.recognition.continuous = true;
@@ -49,6 +52,11 @@ export default class SpeechToText {
     };
 
     this.recognition.onend = () => onFinishedListening();
+   
+  }
+  
+  stopListening() {
+    this.recognition.stop();
   }
 
   /*
