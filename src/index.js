@@ -1,28 +1,35 @@
 export default class SpeechToText {
-
   /*
-  Arguments for the constructor.
-
-  onAnythingSaid - a callback that will be passed interim transcriptions
-  (fairly immediate, less accurate)
-
-  onFinalised - a callback that will be passed the finalised transcription from the cloud
-  (slow, much more accuate)
-
-  onFinishedListening - a callback that will be called when the speech recognition stops listening
-
-  language - the language to interpret against. Default is US English.
-  */
-  constructor(onAnythingSaid, onFinalised, onFinishedListening, language = 'en-US') {
+    Arguments for the constructor.
+  
+    onAnythingSaid - a callback that will be passed interim transcriptions
+    (fairly immediate, less accurate)
+  
+    onFinalised - a callback that will be passed the finalised transcription from the cloud
+    (slow, much more accuate)
+  
+    onFinishedListening - a callback that will be called when the speech recognition stops listening
+  
+    language - the language to interpret against. Default is US English.
+    */
+  constructor(
+    onAnythingSaid,
+    onFinalised,
+    onFinishedListening,
+    language = 'en-US'
+  ) {
     // Check to see if this browser supports speech recognition
     if (
       !('webkitSpeechRecognition' in window) &&
       !('SpeechRecognition' in window)
     ) {
-      throw new Error("This browser doesn't support speech recognition. Try Google Chrome or Firefox.");
+      throw new Error(
+        "This browser doesn't support speech recognition. Try Google Chrome or Firefox."
+      );
     }
 
-    const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+    const SpeechRecognition =
+      window.webkitSpeechRecognition || window.SpeechRecognition;
     this.recognition = new SpeechRecognition();
 
     //  Keep listening even if the speaker pauses, and return interim results.
@@ -33,7 +40,7 @@ export default class SpeechToText {
     let finalTranscript = '';
 
     // process both interim and finalised results
-    this.recognition.onresult = (event) => {
+    this.recognition.onresult = event => {
       let interimTranscript = '';
 
       // concatenate all the transcribed pieces together (SpeechRecognitionResult)
@@ -52,17 +59,13 @@ export default class SpeechToText {
     };
 
     this.recognition.onend = () => onFinishedListening();
-   
   }
-  
+
   stopListening() {
     this.recognition.stop();
   }
 
-  /*
-  Explicitly start listening.
-  Listening will need to be started again after a finalised result is returned.
-  */
+  // start listening!
   startListening() {
     this.recognition.start();
   }
