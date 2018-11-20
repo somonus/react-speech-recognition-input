@@ -11,9 +11,25 @@ A speech recognition module to convert speech into text.
 This module implements 2 use cases:
 
 1. If you only want the speech recognition service to listen when you request it to, and for it to return an accurate transcription.
+
+```
+// code for use case 1
+import SpeechToText from 'speech-to-text';
+
+const onFinalised = text => console.log(`Finalised text: ${text}`);
+
+try {
+  const listener = new SpeechToText(onFinalised);
+  listener.startListening();
+} catch (error) {
+  console.log(error);
+}
+```
+
 2. Start the speech recognition service to continuously listen to speech input, and return the interim text results as well as the finalised text.
 
 ```
+// code for use case 2
 import SpeechToText from 'speech-to-text';
 
 const onFinalised = text => console.log(`Finalised text: ${text}`);
@@ -57,7 +73,7 @@ Does just that. Stops listening.
 
 This will restart the speech recognition service.
 
-motivation: There is a known issue where the speech recognition service randomly stops listening. The simplest solution is to restart the service. Implementation inspired by [this thread](https://stackoverflow.com/a/40676839/2813041).
+motivation: There is a known issue where the speech recognition service randomly stops listening. The simplest solution is to restart the service. The restart implementation is inspired by [this thread](https://stackoverflow.com/a/40676839/2813041).
 
 So for robustness, maybe you want to restart the speech recognition in your app every 11 seconds. You could do that with this code:
 
