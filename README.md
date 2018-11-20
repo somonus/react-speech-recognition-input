@@ -43,14 +43,14 @@ try {
 }
 ```
 
-Demo [here](http://apps.golightlyplus.com/speech-to-text-demo/).
+Use case 2 demo [here](http://apps.golightlyplus.com/speech-to-text-demo/).
 
 ## API
 
 ### The constructor
 
-- onFinalised - a callback that will be passed the finalised transcription from the cloud. Slow, but accuate. Only pass in this function for use case 1 above.
-- onAnythingSaid - Passing in this function will get the module to continuously listen. This passed in callback will be passed interim transcriptions. These transcriptions are generated quickly, but are less accurate than the finalised text. Pass in this second function to start use case 2 above.
+- onFinalised - a callback that will be passed the finalised transcription from the cloud. Slow, but accuate.
+- onAnythingSaid - Passing in this function will get the module to continuously listen. This passed in callback will be passed interim transcriptions. These transcriptions are generated quickly, but are less accurate than the finalised text.
 - language - the language to interpret against. Default is US English.
 
 The constructor will throw an error if speech recognition is not supported by the browser. [Currently only Chrome is supported](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#Browser_compatibility).
