@@ -1,13 +1,17 @@
 export default class SpeechToText {
   /*
-    Arguments for the constructor:
+  This module is largely inspired by this article:
+  https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API
+  
+  Arguments for the constructor:
 
     - onFinalised - a callback that will be passed the finalised transcription from the cloud. Slow, but accuate.
+    - onEndEvent - a callback that will be called when the end event is fired (speech recognition engine disconnects).
     - onAnythingSaid - a callback that will be passed interim transcriptions. Fairly immediate, but less accurate than finalised text.
     - language - the language to interpret against. Default is US English.
 
     */
-  constructor(onFinalised, onAnythingSaid, language = 'en-US') {
+  constructor(onFinalised, onEndEvent, onAnythingSaid, language = 'en-US') {
     // Check to see if this browser supports speech recognition
     // https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#Browser_compatibility
     if (!('webkitSpeechRecognition' in window)) {
@@ -16,14 +20,11 @@ export default class SpeechToText {
       );
     }
 
-    let continuouslyListen = !!onAnythingSaid;
-
     const SpeechRecognition = window.webkitSpeechRecognition;
     this.recognition = new SpeechRecognition();
 
-    //  if to continuously listen, get interim results too
-    this.recognition.continuous = continuouslyListen;
-    this.recognition.interimResults = continuouslyListen;
+    // set interim results to be returned if a callback for it has been passed in
+    this.recognition.interimResults = !!onAnythingSaid;
     this.recognition.lang = language;
 
     let finalTranscript = '';
@@ -40,27 +41,15 @@ export default class SpeechToText {
           finalTranscript += transcriptionPiece;
           onFinalised(finalTranscript);
           finalTranscript = '';
-        } else if (continuouslyListen) {
+        } else if (this.recognition.interimResults) {
           interimTranscript += transcriptionPiece;
           onAnythingSaid(interimTranscript);
         }
       }
     };
 
-    // if speech recognition ends, and it's flagged to restart, then restart!
     this.recognition.onend = () => {
-      if (this.shouldRestart) {
-        this.startListening();
-        this.shouldRestart = false;
-      }
-    };
-
-    this.recognition.onerror = evt => {
-      console.log(
-        `Error with speech recognition: ${evt.error}. Restarting service...`
-      );
-
-      this.restart();
+      onEndEvent();
     };
   }
 
@@ -70,11 +59,5 @@ export default class SpeechToText {
 
   stopListening() {
     this.recognition.stop();
-  }
-
-  // to restart the speech recognition engine, stop it, then flag that it should restart.
-  restart() {
-    this.stopListening();
-    this.shouldRestart = true;
   }
 }
