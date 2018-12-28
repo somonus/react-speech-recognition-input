@@ -1,6 +1,6 @@
 {
   "name": "speech-to-text",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "description": "A speech to text module.",
   "main": "./lib/index.js",
   "scripts": {
