@@ -2,9 +2,9 @@
 A react speech recognition component for chrome browser 
 
 ## install
-
+```
 $ npm install react-speech-recognition-input --save
-
+```
 ## Usage
 
 ```
@@ -18,7 +18,7 @@ ReactDOM.render((
 
 ```
 
-##Example
+## Example
 
 *run demo*
 
